@@ -1,10 +1,14 @@
 
 function Alert(props) {
-  const { message } = props
+  const { children, type } = props
+  const stylingText = `inline text-sm mb-2 mt-[-8px] ${type === 'error' ? 'text-pink-700'
+    : type === 'success' ? 'text-green-500 text-bold text-xl'
+      : ''
+    }`
 
   return (
     <>
-      <p className='text-sm mt-[-8px] mb-2 text-pink-700'>{message}</p>
+      <p className={stylingText}>{children}</p>
     </>
   )
 }
