@@ -1,10 +1,21 @@
+import Indonesia from "../../components/Analytics/Indonesia";
+import Provinsi from "../../components/Analytics/Provinsi";
 import Button from "../../components/Button/Button";
+import Form from "../../components/Form/Form";
+import Hero from './../../components/Hero/Hero'
+import Data from './../../utils/constants/provinces'
+import { useState } from 'react';
 
 function HomePage() {
+
+  const [provinsi, setProvinsi] = useState(Data.provinces);
+
   return (
     <div>
-      <h2>Home Page</h2>
-      <Button title="Button Component" />
+      <Hero />
+      <Indonesia />
+      <Provinsi provinsi={provinsi} setProvinsi={setProvinsi} />
+      <Form provinsi={provinsi} setProvinsi={setProvinsi} />
     </div>
   );
 }
