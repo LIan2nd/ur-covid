@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 
 function Provinsi(props) {
 
@@ -22,7 +23,7 @@ function Provinsi(props) {
           <tbody className='text-gray-100'>
             {provinsi.map((prov, index) => {
               return (
-                <tr>
+                <tr key={nanoid()}>
                   <td className='border border-gray-400 p-1 md:p-4'>{index + 1}</td>
                   <td className='border border-gray-400 p-1 md:p-4'>{prov.kota}</td>
                   <td className='border border-gray-400 p-1 md:p-4'>{prov.kasus}</td>
