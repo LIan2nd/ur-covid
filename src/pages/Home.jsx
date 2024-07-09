@@ -23,7 +23,7 @@ function HomePage() {
     <div>
       <Hero />
       <SituationsCards datas={datas} title="Global" />
-      <AnotherSituations title="Global" />
+      <AnotherSituations title="Regions" />
     </div>
   );
 }
