@@ -6,8 +6,6 @@ import datas from './../../utils/constants/justForLooping';
 function AnotherSituations(props) {
   const { title } = props;
 
-  console.log(datas);
-
   // mengambil dari gugel, xixi
   function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
