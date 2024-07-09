@@ -1,38 +1,78 @@
+import { useContext, useState } from 'react';
 import Button from '../Button/Button';
 import FormIlus from './../../assets/undraw_Forms_re_pkrt.png'
 import Alert from './Alert';
-import { useState } from 'react';
 import { nanoid } from 'nanoid';
+import SituationsContext from '../Context/SituationsContext';
 
-function Form(props) {
+function Form() {
 
-  const { provinsi, setProvinsi } = props
-  const [kota, setKota] = useState('Select Provinsi');
-  const [status, setStatus] = useState('Select Status');
-  const [jumlah, setJumlah] = useState(0);
+  const { provinsi, setProvinsi } = useContext(SituationsContext);
 
-  const [isKotaError, setIsKotaError] = useState(false);
-  const [isStatusError, setIsStatusError] = useState(false);
-  const [isJumlahError, setIsJumlahError] = useState(false);
+  const [formData, setFormData] = useState({
+    kota: "Select Provinsi",
+    status: "Select Status",
+    jumlah: 0
+  });
+
+  const [isError, setIsError] = useState({
+    isKotaError: false,
+    isStatusError: false,
+    isJumlahError: false,
+  });
+
+  const { kota, status, jumlah } = formData;
+  const { isKotaError, isStatusError, isJumlahError } = isError;
+
   const [isSuccess, setIsSuccess] = useState(false);
 
-  function handleJumlah(e) {
-    setJumlah(e.target.value);
+  function handleChange(e) {
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  function validate() {
+    if (kota === 'Select Provinsi') {
+      setIsError({
+        ...isError,
+        isKotaError: true,
+      })
+      return false;
+    } else if (status === 'Select Status') {
+      setIsError({
+        ...isError,
+        isStatusError: true,
+        isKotaError: false,
+      });
+      return false;
+    } else if (jumlah === 0) {
+      setIsError({
+        isJumlahError: true,
+        isStatusError: false,
+        isKotaError: false,
+      });
+      return false;
+    } else {
+      setIsSuccess(true);
+      setIsError({
+        isKotaError: false,
+        isStatusError: false,
+        isJumlahError: false,
+      });
+      return true;
+    }
   }
 
-  function handleStatus(e) {
-    setStatus(e.target.value);
-  }
-
-  function handleKota(e) {
-    setKota(e.target.value);
+  function handleIsSuccess() {
+    setIsSuccess(false);
   }
 
   function updateStatus() {
-
-    const selectedProvinsi = provinsi[kota]
-
-    console.log(selectedProvinsi);
+    const selectedProvinsi = provinsi[kota];
 
     if (status === 'kasus') {
       provinsi[kota] = {
@@ -57,35 +97,18 @@ function Form(props) {
     } else {
       alert('what the dog doin\'?')
     }
-    setProvinsi([...provinsi])
-    setKota('Select Provinsi');
-    setStatus('Select Status');
-    setJumlah(0);
+    setProvinsi([...provinsi]);
+    setFormData({
+      kota: "Select Provinsi",
+      status: "Select Status",
+      jumlah: 0
+    });
   }
 
   function handleForm(e) {
     e.preventDefault();
 
-    if (kota === 'Select Provinsi') {
-      setIsKotaError(true);
-    } else if (status === 'Select Status') {
-      setIsKotaError(false);
-      setIsStatusError(true);
-    } else if (jumlah === 0) {
-      setIsKotaError(false);
-      setIsStatusError(false);
-      setIsJumlahError(true);
-    } else {
-      updateStatus();
-      setIsKotaError(false);
-      setIsStatusError(false);
-      setIsJumlahError(false);
-      setIsSuccess(true);
-    }
-  }
-
-  function handleIsSuccess() {
-    setIsSuccess(false);
+    validate() && updateStatus();
   }
 
   return (
@@ -95,11 +118,11 @@ function Form(props) {
         <div className='grid grid-cols-1 p-4'>
           <h1 className='w-full text-3xl font-medium text-[#FFD166] mb-4'>Form Covid</h1>
           {isSuccess ? <div className='mt-[-16px] mb-4'><Alert type='success'>Status Successfully Updated!</Alert> <button className='text-bold ml-1 w-5 h-5 text-black text-sm rounded-md bg-[#ef476f] text-bold' type='button' onClick={handleIsSuccess} >x</button></div> : ''}
-          <label className='text-gray-500 after:content-["*"] after:text-pink-500 after:ml-0.5' htmlFor='provinsi'>Provinsi</label>
+          <label className='text-gray-500 after:content-["*"] after:text-pink-500 after:ml-0.5' htmlFor='kota'>Provinsi</label>
           <select className="
             text-gray-600 border border-[#FFD166] 
               rounded-sm py-1.5 pl-1 focus:ring-1 focus:ring-[#FFD166] focus:outline-none 
-              mt-1 mb-4" type='text' name='provinsi' id='provinsi' value={kota} onChange={handleKota}>
+              mt-1 mb-4" type='text' name='kota' id='kota' value={kota} onChange={handleChange}>
             <option className='text-4xl' disabled>Select Provinsi</option>;
             {
               provinsi.map((prov, index) => {
@@ -117,7 +140,7 @@ function Form(props) {
           <select className="
             text-gray-600 border border-[#FFD166] 
               rounded-sm py-1.5 pl-1 focus:ring-1 focus:ring-[#FFD166] focus:outline-none 
-              mt-1 mb-4" type='text' name='status' id='status' value={status} onChange={handleStatus}>
+              mt-1 mb-4" type='text' name='status' id='status' value={status} onChange={handleChange}>
             <option className='text-4xl' disabled>Select Status</option>
             <option value="kasus">Kasus</option>
             <option value="sembuh">Sembuh</option>
@@ -131,7 +154,7 @@ function Form(props) {
           <input className="
             text-gray-600 border border-[#FFD166] 
               rounded-sm py-1.5 pl-2 focus:ring-1 focus:ring-[#FFD166] focus:outline-none 
-              mt-1 mb-4" type='number' name='jumlah' id='jumlah' value={jumlah} onChange={handleJumlah} min='0' required />
+              mt-1 mb-4" type='number' name='jumlah' id='jumlah' value={jumlah} onChange={handleChange} min='0' required />
           {
             isJumlahError && <Alert type='error'>Jumlah is Required</Alert>
           }
