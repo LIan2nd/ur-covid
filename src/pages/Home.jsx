@@ -7,23 +7,24 @@ import ENDPOINTS from '../utils/constants/endpoints';
 
 function HomePage() {
 
-  const [datas, setDatas] = useState([]);
+  const [dataGlobal, setDataGlobal] = useState([]);
+  const [dataRegions, setDataRegions] = useState([]);
 
   useEffect(() => {
     async function fetchGlobalSituations() {
       await axios.get(ENDPOINTS.global).then((res) => {
-        setDatas(res.data.global);
+        setDataGlobal(res.data.global);
+        setDataRegions(res.data.regions)
       }).catch(err => console.error(err));
     }
-
     fetchGlobalSituations();
   }, []);
 
   return (
     <div>
       <Hero />
-      <SituationsCards datas={datas} title="Global" />
-      <AnotherSituations title="Regions" />
+      <SituationsCards datas={dataGlobal} title="Global" />
+      <AnotherSituations dataRegions={dataRegions} title="Regions" />
     </div>
   );
 }

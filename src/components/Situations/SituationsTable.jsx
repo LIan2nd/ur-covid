@@ -1,10 +1,10 @@
 import { nanoid } from 'nanoid';
 import { useContext } from 'react';
-import SituationsContext from '../Context/SituationsContext';
+import ProvincesContext from '../Context/ProvincesContext';
 
 function SituationsTable() {
 
-  const { provinsi } = useContext(SituationsContext);
+  const { provinsi } = useContext(ProvincesContext);
 
   return (
     <div className='text-center py-16'>
@@ -23,18 +23,26 @@ function SituationsTable() {
             </tr>
           </thead>
           <tbody className='text-gray-100'>
+            {/* Inii ko bisaa?? gimanaaa ceritanyaa 😭😭😭 hasil tanya chatgpt */}
             {provinsi.map((prov, index) => {
+              const name = prov.name || prov.kota;
+              const confirmed = prov.numbers?.confirmed || prov.kasus;
+              const recovered = prov.numbers?.recovered || prov.sembuh;
+              const treatment = prov.numbers?.treatment || prov.dirawat;
+              const death = prov.numbers?.death || prov.meninggal;
+
               return (
                 <tr key={nanoid()} className='hover:bg-[#FFD166] hover:text-black transition-all duration-100'>
                   <td className='border border-gray-400 p-1 md:p-4'>{index + 1}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{prov.kota}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{prov.kasus}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{prov.sembuh}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{prov.dirawat}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{prov.meninggal}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{name}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{confirmed}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{recovered}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{treatment}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{death}</td>
                 </tr>
-              )
+              );
             })}
+
           </tbody>
         </table>
       </div>

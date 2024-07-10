@@ -1,8 +1,15 @@
-import Hero from "../../components/Hero/Hero"
+import Hero from "../../components/Hero/Hero";
 import SituationsTable from "../../components/Situations/SituationsTable";
-import Form from './../../components/Form/Form'
+import Form from './../../components/Form/Form';
+import data from './../../utils/constants/provinces';
+import { useContext } from "react";
+import ProvincesContext from "../../components/Context/ProvincesContext";
 
 const Provinsi = () => {
+
+  const { setProvinsi } = useContext(ProvincesContext);
+  setProvinsi(data.provinces);
+
   return (
     <>
       <Hero />

@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
-import SituationsContext from './components/Context/SituationsContext';
+import { useState, useEffect } from 'react';
+import ProvincesContext from './components/Context/ProvincesContext';
 import Layout from "./layout/layout";
 import HomePage from "./pages/Home";
 import Indonesia from './pages/Situations/Indonesia';
@@ -10,7 +10,7 @@ import data from './utils/constants/provinces';
 
 function App() {
 
-  const [provinsi, setProvinsi] = useState(data.provinces);
+  const [provinsi, setProvinsi] = useState([]);
 
   const contextValue = {
     provinsi,
@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div>
-      <SituationsContext.Provider value={contextValue}>
+      <ProvincesContext.Provider value={contextValue}>
         <Layout>
           <Routes>
             <Route path='/' element={<HomePage />} />
@@ -28,7 +28,7 @@ function App() {
             <Route path='/about' element={<About />} />
           </Routes>
         </Layout>
-      </SituationsContext.Provider>
+      </ProvincesContext.Provider>
     </div>
   );
 }

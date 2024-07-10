@@ -3,11 +3,11 @@ import Button from '../Button/Button';
 import FormIlus from './../../assets/undraw_Forms_re_pkrt.png'
 import Alert from './Alert';
 import { nanoid } from 'nanoid';
-import SituationsContext from '../Context/SituationsContext';
+import ProvincesContext from '../Context/ProvincesContext';
 
 function Form() {
 
-  const { provinsi, setProvinsi } = useContext(SituationsContext);
+  const { provinsi, setProvinsi } = useContext(ProvincesContext);
 
   const [formData, setFormData] = useState({
     kota: "Select Provinsi",
@@ -128,7 +128,7 @@ function Form() {
               provinsi.map((prov, index) => {
                 let keyId = nanoid();
                 return (
-                  <option key={keyId} value={index}>{prov.kota}</option>
+                  <option key={keyId} value={index}>{prov.name || prov.kota}</option>
                 )
               })
             }
