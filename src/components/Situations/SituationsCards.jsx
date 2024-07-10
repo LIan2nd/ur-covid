@@ -1,5 +1,6 @@
 import Card from './../Card/Card';
 import { nanoid } from 'nanoid';
+import Body from '../Card/Body';
 
 function SituationsCards(props) {
   const { datas, title, isLoading } = props;
@@ -17,12 +18,20 @@ function SituationsCards(props) {
         <div className='mx-auto grid md:grid-cols-2 min-[992px]:grid-cols-3 gap-8'>
           {datas.map((data) => {
             let keyId = nanoid();
-            return <Card key={keyId} title={data.status} total={formatNumber(data.total)} color={
-              data.status == 'confirmed' ? 'text-blue-500'
-                : data.status == 'recovered' ? 'text-green-500'
-                  : data.status == 'death' ? 'text-red-500'
-                    : ''
-            } />
+            if (data.status) {
+              return <Card key={keyId} title={data.status} total={formatNumber(data.total)} color={
+                data.status == 'confirmed' ? 'text-blue-500'
+                  : data.status == 'recovered' ? 'text-green-500'
+                    : data.status == 'death' ? 'text-red-500'
+                      : ''
+              } />
+            } else if (data.numbers) {
+              return <Card key={keyId} title={data.title}>
+                <Body title="confirmed" total={formatNumber(data.numbers.confirmed)} />
+                <Body title="recovered" total={formatNumber(data.numbers.recovered)} />
+                <Body title="death" total={formatNumber(data.numbers.death)} />
+              </Card>
+            }
           })}
         </div>
       }

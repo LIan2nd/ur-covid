@@ -26,7 +26,7 @@ function HomePage() {
     <div>
       <Hero />
       <SituationsCards datas={dataGlobal} title="Global" isLoading={isLoading} />
-      <AnotherSituations dataRegions={dataRegions} title="Regions" isLoading={isLoading} />
+      <SituationsCards datas={dataRegions} title="Regions" isLoading={isLoading} />
     </div>
   );
 }
