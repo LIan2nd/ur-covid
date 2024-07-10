@@ -3,6 +3,9 @@ import { useContext } from 'react';
 import ProvincesContext from '../Context/ProvincesContext';
 
 function SituationsTable() {
+  function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+  }
 
   const { provinsi } = useContext(ProvincesContext);
 
@@ -35,10 +38,10 @@ function SituationsTable() {
                 <tr key={nanoid()} className='hover:bg-[#FFD166] hover:text-black transition-all duration-100'>
                   <td className='border border-gray-400 p-1 md:p-4'>{index + 1}</td>
                   <td className='border border-gray-400 p-1 md:p-4'>{name}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{confirmed}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{recovered}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{treatment}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{death}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{formatNumber(confirmed)}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{formatNumber(recovered)}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{formatNumber(treatment)}</td>
+                  <td className='border border-gray-400 p-1 md:p-4'>{formatNumber(death)}</td>
                 </tr>
               );
             })}
