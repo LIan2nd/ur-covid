@@ -2,7 +2,8 @@ import { nanoid } from 'nanoid';
 import { useContext } from 'react';
 import ProvincesContext from '../Context/ProvincesContext';
 
-function SituationsTable() {
+function SituationsTable(props) {
+  const { isLoading } = props;
   function formatNumber(num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
   }
@@ -14,7 +15,8 @@ function SituationsTable() {
       <h1 className='text-4xl min-[992px]:text-6xl font-medium text-[#FFD166]'>Provinsi</h1>
       <h2 className='text-[#118AB2] text-lg min-[992px]:text-xl mb-8'>Data Covid berdasarkan Provinsi</h2>
       <div>
-        <table className='text-sm md:text-lg min-[992px]:text-xl mx-auto table-auto border border-gray-500 w-[90%]'>
+        {isLoading && <p className='text-white text-xl'>Loading...</p>}
+        {!isLoading && <table className='text-sm md:text-lg min-[992px]:text-xl mx-auto table-auto border border-gray-500 w-[90%]'>
           <thead className='bg-gray-800 text-[#FFD166]'>
             <tr>
               <th className='border border-gray-400 p-1 md:p-4'>No</th>
@@ -47,7 +49,7 @@ function SituationsTable() {
             })}
 
           </tbody>
-        </table>
+        </table>}
       </div>
     </div >
   )

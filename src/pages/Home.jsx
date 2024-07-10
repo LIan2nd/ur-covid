@@ -9,12 +9,14 @@ function HomePage() {
 
   const [dataGlobal, setDataGlobal] = useState([]);
   const [dataRegions, setDataRegions] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchGlobalSituations() {
       await axios.get(ENDPOINTS.global).then((res) => {
         setDataGlobal(res.data.global);
-        setDataRegions(res.data.regions)
+        setDataRegions(res.data.regions);
+        setIsLoading(false);
       }).catch(err => console.error(err));
     }
     fetchGlobalSituations();
@@ -23,8 +25,8 @@ function HomePage() {
   return (
     <div>
       <Hero />
-      <SituationsCards datas={dataGlobal} title="Global" />
-      <AnotherSituations dataRegions={dataRegions} title="Regions" />
+      <SituationsCards datas={dataGlobal} title="Global" isLoading={isLoading} />
+      <AnotherSituations dataRegions={dataRegions} title="Regions" isLoading={isLoading} />
     </div>
   );
 }

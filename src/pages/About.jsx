@@ -9,6 +9,8 @@ import reactLogo from './../assets/react.png'
 
 const About = () => {
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const [page, setPage] = useState(1);
   const [dummyPost, setDummyPost] = useState('');
   function nextPage() {
@@ -25,8 +27,10 @@ const About = () => {
 
   useEffect(() => {
     async function fetchDummyJson() {
+      setIsLoading(true);
       await axios(`https://dummyjson.com/posts/${page}`).then((res) => {
         setDummyPost(res.data);
+        setIsLoading(false);
       }).catch(err => console.error(err));
     }
     fetchDummyJson();
@@ -68,7 +72,8 @@ const About = () => {
               <button onClick={nextPage} className='bg-[#FFD166] text-black font-medium rounded-sm py-1 px-2 hover:bg-[black] hover:text-[#FFD166] transition ease-in-out duration-200'><FaArrowRight /></button>
             </div>
             <div className='h-[75%] overflow-y-auto'>
-              <p className='text-center text-sm basis-80'>{dummyPost.body}</p>
+              {isLoading && <p className="text-center text-md basis-80">Loading...</p>}
+              {!isLoading && <p className='text-center text-sm basis-80'>{dummyPost.body}</p>}
             </div>
           </ICan>
           <ICan>

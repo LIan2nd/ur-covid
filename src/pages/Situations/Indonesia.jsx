@@ -8,17 +8,17 @@ import ENDPOINTS from "../../utils/constants/endpoints";
 
 const Indonesia = () => {
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const [dataIndonesia, setDataIndonesia] = useState([]);
-  const { provinsi, setProvinsi } = useContext(ProvincesContext);
-  const [numbers, setNumbers] = useState({})
+  const { setProvinsi } = useContext(ProvincesContext);
 
   useEffect(() => {
     async function fetchIndonesiaSituations() {
       await axios.get(ENDPOINTS.indonesia).then((res) => {
-        const regions = res.data.regions;
         setDataIndonesia(res.data.indonesia);
         setProvinsi(res.data.regions);
-        setNumbers(res.data.regions[0].numbers.confirmed);
+        setIsLoading(false);
       }).catch(err => console.error(err));
     }
     fetchIndonesiaSituations();
@@ -28,7 +28,7 @@ const Indonesia = () => {
     <>
       <Hero />
       <SituationsCards datas={dataIndonesia} title="Indonesia" />
-      <SituationsTable />
+      <SituationsTable isLoading={isLoading} />
     </>
   )
 }
