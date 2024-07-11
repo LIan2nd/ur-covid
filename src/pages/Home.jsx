@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import SituationsCards from './../components/Situations/SituationsCards';
-import AnotherSituations from '../components/Situations/AnotherSituations';
 import Hero from '../components/Hero/Hero';
 import axios from 'axios';
 import ENDPOINTS from '../utils/constants/endpoints';
