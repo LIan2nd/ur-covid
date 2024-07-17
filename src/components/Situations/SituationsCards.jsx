@@ -26,7 +26,7 @@ function SituationsCards(props) {
                       : ''
               } />
             } else if (data.numbers) {
-              return <Card key={keyId} title={data.title}>
+              return <Card key={keyId} title={data.name}>
                 <Body title="confirmed" total={formatNumber(data.numbers.confirmed)} />
                 <Body title="recovered" total={formatNumber(data.numbers.recovered)} />
                 <Body title="death" total={formatNumber(data.numbers.death)} />
