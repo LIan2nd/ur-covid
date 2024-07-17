@@ -1,13 +1,10 @@
 import Card from './../Card/Card';
 import { nanoid } from 'nanoid';
 import Body from '../Card/Body';
+import formatNumber from './../Functions/formatNumbers';
 
 function SituationsCards(props) {
   const { datas, title, isLoading } = props;
-
-  function formatNumber(num) {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-  }
 
   return (
     <div className='bg-white text-center p-16 w-full'>

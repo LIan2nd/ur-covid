@@ -1,12 +1,10 @@
 import { nanoid } from 'nanoid';
 import { useContext } from 'react';
 import ProvincesContext from '../Context/ProvincesContext';
+import formatNumber from './../Functions/formatNumbers';
 
 function SituationsTable(props) {
   const { isLoading } = props;
-  function formatNumber(num) {
-    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
-  }
 
   const { provinsi } = useContext(ProvincesContext);
 
