@@ -5,6 +5,25 @@ import formatNumber from './../Functions/formatNumbers';
 
 function SituationsCards(props) {
   const { datas, title, isLoading } = props;
+  const colors = {
+    'confirmed': 'text-blue-500',
+    'recovered': 'text-green-500',
+    'death': 'text-red-500',
+  };
+
+  const renderCards = (datas) => {
+    return datas.map((data) => {
+      if (data.status) {
+        return <Card key={nanoid()} title={data.status} total={formatNumber(data.total)} color={colors[data.status]} />
+      } else if (data.numbers) {
+        return <Card key={nanoid()} title={data.name}>
+          <Body title="confirmed" total={formatNumber(data.numbers.confirmed)} />
+          <Body title="recovered" total={formatNumber(data.numbers.recovered)} />
+          <Body title="death" total={formatNumber(data.numbers.death)} />
+        </Card>
+      }
+    })
+  }
 
   return (
     <div className='bg-white text-center p-16 w-full'>
@@ -13,23 +32,7 @@ function SituationsCards(props) {
       {isLoading && <p className='text-black text-xl text-center'>Loading...</p>}
       {!isLoading &&
         <div className='mx-auto grid md:grid-cols-2 min-[992px]:grid-cols-3 gap-8'>
-          {datas.map((data) => {
-            let keyId = nanoid();
-            if (data.status) {
-              return <Card key={keyId} title={data.status} total={formatNumber(data.total)} color={
-                data.status == 'confirmed' ? 'text-blue-500'
-                  : data.status == 'recovered' ? 'text-green-500'
-                    : data.status == 'death' ? 'text-red-500'
-                      : ''
-              } />
-            } else if (data.numbers) {
-              return <Card key={keyId} title={data.name}>
-                <Body title="confirmed" total={formatNumber(data.numbers.confirmed)} />
-                <Body title="recovered" total={formatNumber(data.numbers.recovered)} />
-                <Body title="death" total={formatNumber(data.numbers.death)} />
-              </Card>
-            }
-          })}
+          {renderCards(datas)}
         </div>
       }
     </div>

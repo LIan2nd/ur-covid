@@ -1,7 +1,7 @@
 
 function Card(props) {
   const { title, total, color, children } = props;
-  const totalStyle = `text-2xl md:text-4xl font-bold ${color} hover:cursor-default`
+  const totalStyle = `text-2xl md:text-4xl font-bold ${!color && 'text-orange-500'} ${color}  hover:cursor-default`
 
   return (
     <div className='m-auto w-full h-[350px] flex flex-col justify-center bg-white p-8 rounded-xl shadow-lg hover:scale-105 ease-in-out duration-200'>
