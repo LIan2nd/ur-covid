@@ -75,25 +75,37 @@ function Form() {
     const selectedProvinsi = provinsi[kota];
 
     if (status === 'kasus') {
-      provinsi[kota] = {
-        ...selectedProvinsi,
-        kasus: selectedProvinsi.kasus + parseInt(jumlah)
-      }
+      setProvinsi([
+        ...provinsi,
+        provinsi[kota] = {
+          ...selectedProvinsi,
+          kasus: selectedProvinsi.kasus + parseInt(jumlah)
+        }
+      ]);
     } else if (status === 'sembuh') {
-      provinsi[kota] = {
-        ...selectedProvinsi,
-        sembuh: selectedProvinsi.sembuh + parseInt(jumlah)
-      }
+      setProvinsi([
+        ...provinsi,
+        provinsi[kota] = {
+          ...selectedProvinsi,
+          sembuh: selectedProvinsi.sembuh + parseInt(jumlah)
+        }
+      ]);
     } else if (status === 'meninggal') {
-      provinsi[kota] = {
-        ...selectedProvinsi,
-        meninggal: selectedProvinsi.meninggal + parseInt(jumlah)
-      }
+      setProvinsi([
+        ...provinsi,
+        provinsi[kota] = {
+          ...selectedProvinsi,
+          meninggal: selectedProvinsi.meninggal + parseInt(jumlah)
+        }
+      ]);
     } else if (status === 'dirawat') {
-      provinsi[kota] = {
-        ...selectedProvinsi,
-        dirawat: selectedProvinsi.dirawat + parseInt(jumlah)
-      }
+      setProvinsi([
+        ...provinsi,
+        provinsi[kota] = {
+          ...selectedProvinsi,
+          dirawat: selectedProvinsi.dirawat + parseInt(jumlah)
+        }
+      ]);
     } else {
       alert('what the dog doin\'?')
     }
