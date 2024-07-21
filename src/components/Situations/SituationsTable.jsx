@@ -1,7 +1,6 @@
-import { nanoid } from 'nanoid';
 import { useContext } from 'react';
 import ProvincesContext from '../Context/ProvincesContext';
-import formatNumber from './../Functions/formatNumbers';
+import RowData from '../Table/RowData';
 
 function SituationsTable(props) {
   const { isLoading } = props;
@@ -14,7 +13,7 @@ function SituationsTable(props) {
       <h2 className='text-[#118AB2] text-lg min-[992px]:text-xl mb-8'>Data Covid berdasarkan Provinsi</h2>
       <div>
         {isLoading && <p className='text-white text-xl'>Loading...</p>}
-        {!isLoading && <table className='text-sm md:text-lg min-[992px]:text-xl mx-auto table-auto border border-gray-500 w-[90%]'>
+        {!isLoading && <table className='text-sm md:text-lg min-[992px]:text-xl cursor-default mx-auto table-auto border border-gray-500 w-[90%]'>
           <thead className='bg-gray-800 text-[#FFD166]'>
             <tr>
               <th className='border border-gray-400 p-1 md:p-4'>No</th>
@@ -26,26 +25,7 @@ function SituationsTable(props) {
             </tr>
           </thead>
           <tbody className='text-gray-100'>
-            {/* Inii ko bisaa?? gimanaaa ceritanyaa 😭😭😭 hasil tanya chatgpt */}
-            {provinsi.map((prov, index) => {
-              const name = prov.name || prov.kota;
-              const confirmed = prov.numbers?.confirmed || prov.kasus;
-              const recovered = prov.numbers?.recovered || prov.sembuh;
-              const treatment = prov.numbers?.treatment || prov.dirawat;
-              const death = prov.numbers?.death || prov.meninggal;
-
-              return (
-                <tr key={nanoid()} className='hover:bg-[#FFD166] hover:text-black transition-all duration-100'>
-                  <td className='border border-gray-400 p-1 md:p-4'>{index + 1}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{name}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{formatNumber(confirmed)}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{formatNumber(recovered)}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{formatNumber(treatment)}</td>
-                  <td className='border border-gray-400 p-1 md:p-4'>{formatNumber(death)}</td>
-                </tr>
-              );
-            })}
-
+            <RowData provinsi={provinsi} />
           </tbody>
         </table>}
       </div>
