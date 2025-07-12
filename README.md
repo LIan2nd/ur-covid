@@ -18,7 +18,7 @@ Aplikasi ini sudah di-deploy dan dapat diakses melalui link berikut:
 
 -   **Dashboard Global**: Ringkasan total kasus, kematian, dan kesembuhan di seluruh dunia.
 -   **Data per Negara**: Statistik terperinci untuk setiap negara yang terdampak.
--   **Pencarian Cepat**: Fitur untuk mencari data negara spesifik secara instan.
+-   **Input data perProvinsi**: Mengimplementasikan react context untuk input data
 -   **Desain Responsif**: Tampilan yang dioptimalkan untuk berbagai ukuran layar, dari mobile hingga desktop.
 -   **Performa Cepat**: Dibangun dengan Vite untuk pengalaman *development* dan *loading* yang super cepat.
 
