@@ -1,6 +1,6 @@
 # 📊 ur-covid (React + Vite + Tailwind CSS)
 
-[![Tangkapan Layar ur-covid](https://i.imgur.com/uCLi54y.png)](https://ur-covid.vercel.app/) 
+[![Tangkapan Layar ur-covid](https://github.com/user-attachments/assets/4f6d975c-3915-4257-bfb2-643b271e4a43)](https://ur-covid.vercel.app/) 
 
 **ur-covid** adalah sebuah aplikasi web modern dan cepat yang dibangun untuk memantau statistik pandemi COVID-19. Proyek ini menampilkan data global dan nasional secara *real-time* dengan antarmuka yang bersih dan responsif, ditenagai oleh React, Vite, dan Tailwind CSS.
 
@@ -42,7 +42,7 @@ Untuk menjalankan proyek ini di mesin lokal Anda, ikuti langkah-langkah berikut:
 
 1.  **Clone repositori ini:**
     ```bash
-    git clone [https://github.com/LIan2nd/ur-covid.git](https://github.com/LIan2nd/ur-covid.git)
+    git clone https://github.com/LIan2nd/ur-covid.git
     ```
 
 2.  **Masuk ke direktori proyek:**
