@@ -1,6 +1,8 @@
 # 📊 ur-covid (React + Vite + Tailwind CSS)
 
-![ur-covid-screenshot]([https://i.imgur.com/gUaz40k.png](https://imgur.com/a/GoBf5f9)) **ur-covid** adalah sebuah aplikasi web modern dan cepat yang dibangun untuk memantau statistik pandemi COVID-19. Proyek ini menampilkan data global dan nasional secara *real-time* dengan antarmuka yang bersih dan responsif, ditenagai oleh React, Vite, dan Tailwind CSS.
+[![Tangkapan Layar ur-covid](https://i.imgur.com/uCLi54y.png)](https://ur-covid.vercel.app/) 
+
+**ur-covid** adalah sebuah aplikasi web modern dan cepat yang dibangun untuk memantau statistik pandemi COVID-19. Proyek ini menampilkan data global dan nasional secara *real-time* dengan antarmuka yang bersih dan responsif, ditenagai oleh React, Vite, dan Tailwind CSS.
 
 ---
 
